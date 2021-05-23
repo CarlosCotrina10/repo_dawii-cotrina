@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,7 +82,7 @@ public class AlumnoController {
 		System.out.println(">>>> registra " + dni);
 		List<Alumno> listAlumno = service.listaPorDni(dni);
 		
-		if (listAlumno != null) {
+		if (!CollectionUtils.isEmpty(listAlumno)) {
 			return ResponseEntity.ok(listAlumno.get(0));
 		} else {
 			return ResponseEntity.badRequest().build();
