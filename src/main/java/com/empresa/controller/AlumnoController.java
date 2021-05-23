@@ -77,12 +77,12 @@ public class AlumnoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Alumno> buscar(@PathVariable("id") int idAlumno){
-		System.out.println(">>>> registra " + idAlumno);
-		Optional<Alumno> optAlumno = service.obtienePorId(idAlumno);
+	public ResponseEntity<Alumno> buscar(@PathVariable("dni") String dni){
+		System.out.println(">>>> registra " + dni);
+		List<Alumno> listAlumno = service.listaPorDni(dni);
 		
-		if (optAlumno.isPresent()) {
-			return ResponseEntity.ok(optAlumno.get());
+		if (listAlumno != null) {
+			return ResponseEntity.ok(listAlumno.get(0));
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
