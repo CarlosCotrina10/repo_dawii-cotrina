@@ -76,4 +76,16 @@ public class AlumnoController {
 		}
 	}
 	
+	@PutMapping("/{id}")
+	public ResponseEntity<Alumno> buscar(@PathVariable("id") int idAlumno){
+		System.out.println(">>>> registra " + idAlumno);
+		Optional<Alumno> optAlumno = service.obtienePorId(idAlumno);
+		
+		if (optAlumno.isPresent()) {
+			return ResponseEntity.ok(optAlumno.get());
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
 }
